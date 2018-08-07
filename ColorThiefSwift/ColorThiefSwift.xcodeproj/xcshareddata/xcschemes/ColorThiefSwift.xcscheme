@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8692557B21193B2F00D521CC"
+               BlueprintIdentifier = "866EABFD21196D4C006D66A7"
                BuildableName = "ColorThiefSwift.framework"
                BlueprintName = "ColorThiefSwift"
                ReferencedContainer = "container:ColorThiefSwift.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8692557B21193B2F00D521CC"
+            BlueprintIdentifier = "866EABFD21196D4C006D66A7"
             BuildableName = "ColorThiefSwift.framework"
             BlueprintName = "ColorThiefSwift"
             ReferencedContainer = "container:ColorThiefSwift.xcodeproj">
@@ -63,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8692557B21193B2F00D521CC"
+            BlueprintIdentifier = "866EABFD21196D4C006D66A7"
             BuildableName = "ColorThiefSwift.framework"
             BlueprintName = "ColorThiefSwift"
             ReferencedContainer = "container:ColorThiefSwift.xcodeproj">

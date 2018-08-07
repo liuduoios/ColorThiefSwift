@@ -3,7 +3,7 @@
 //  ColorThiefSwift
 //
 //  Created by 刘铎 on 2018/8/7.
-//  Copyright © 2018年 CocoaPods. All rights reserved.
+//  Copyright © 2018年 刘铎. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
