@@ -19,11 +19,22 @@
 
 import UIKit
 
-open class ColorThief {
-
+@objc
+open class ColorThief : NSObject {
+    
     open static let defaultQuality = 10
     open static let defaultIgnoreWhite = true
-
+    
+    @objc open static func getColor(from image: UIImage, quality: Int = defaultQuality, ignoreWhite: Bool = defaultIgnoreWhite) -> UIColor? {
+        guard let palette = getPalette(from: image, colorCount: 5, quality: quality, ignoreWhite: ignoreWhite) else {
+            return nil
+        }
+        let dominantColor = palette[0]
+        return dominantColor.makeUIColor()
+    }
+    
+    
+    
     /// Use the median cut algorithm to cluster similar colors and return the
     /// base color from the largest cluster.
     ///
@@ -36,14 +47,14 @@ open class ColorThief {
     ///              color.
     ///   - ignoreWhite: if true, white pixels are ignored
     /// - Returns: the dominant color
-    open static func getColor(from image: UIImage, quality: Int = defaultQuality, ignoreWhite: Bool = defaultIgnoreWhite) -> MMCQ.Color? {
-        guard let palette = getPalette(from: image, colorCount: 5, quality: quality, ignoreWhite: ignoreWhite) else {
-            return nil
-        }
-        let dominantColor = palette[0]
-        return dominantColor
-    }
-
+    //    open static func getColor(from image: UIImage, quality: Int = defaultQuality, ignoreWhite: Bool = defaultIgnoreWhite) -> MMCQ.Color? {
+    //        guard let palette = getPalette(from: image, colorCount: 5, quality: quality, ignoreWhite: ignoreWhite) else {
+    //            return nil
+    //        }
+    //        let dominantColor = palette[0]
+    //        return dominantColor
+    //    }
+    
     /// Use the median cut algorithm to cluster similar colors.
     ///
     /// - Parameters:
@@ -63,7 +74,7 @@ open class ColorThief {
         }
         return colorMap.makePalette()
     }
-
+    
     /// Use the median cut algorithm to cluster similar colors.
     ///
     /// - Parameters:
@@ -84,7 +95,7 @@ open class ColorThief {
         let colorMap = MMCQ.quantize(pixels, quality: quality, ignoreWhite: ignoreWhite, maxColors: colorCount)
         return colorMap
     }
-
+    
     static func makeBytes(from image: UIImage) -> [UInt8]? {
         guard let cgImage = image.cgImage else {
             return nil
@@ -95,7 +106,7 @@ open class ColorThief {
             return makeBytesFromIncompatibleImage(cgImage)
         }
     }
-
+    
     static func isCompatibleImage(_ cgImage: CGImage) -> Bool {
         guard let colorSpace = cgImage.colorSpace else {
             return false
@@ -122,7 +133,7 @@ open class ColorThief {
         }
         return true
     }
-
+    
     static func makeBytesFromCompatibleImage(_ image: CGImage) -> [UInt8]? {
         guard let dataProvider = image.dataProvider else {
             return nil
@@ -135,7 +146,7 @@ open class ColorThief {
         CFDataGetBytes(data, CFRange(location: 0, length: length), &rawData)
         return rawData
     }
-
+    
     static func makeBytesFromIncompatibleImage(_ image: CGImage) -> [UInt8]? {
         let width = image.width
         let height = image.height
@@ -153,5 +164,5 @@ open class ColorThief {
         context.draw(image, in: CGRect(x: 0, y: 0, width: width, height: height))
         return rawData
     }
-
+    
 }
